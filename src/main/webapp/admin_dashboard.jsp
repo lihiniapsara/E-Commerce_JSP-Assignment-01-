@@ -10,6 +10,7 @@
         body {
             background-color: #f0f8ff; /* Light blue background */
             font-family: Arial, sans-serif;
+            overflow-x: hidden;
         }
         .navbar a {
             color: white;
@@ -50,12 +51,12 @@
 <body>
 
 <!-- Header -->
-<header class="bg-light py-3 border-bottom">
+<header class="bg-light py-2 border-bottom">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <!-- Left Section -->
             <div class="d-flex align-items-center">
-                <img src="images/toys-mania-42.png" alt="Toys Store Logo">
+                <img src="images/toys-mania-42.png" alt="Toys Store Logo" style="max-height: 40px;">
             </div>
 
             <!-- Right Section: Navigation -->
@@ -68,10 +69,10 @@
                         <a class="nav-link text-dark" href="adduser">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Category</a>
+                        <a class="nav-link text-dark" href="addcategory">Category</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Products</a>
+                        <a class="nav-link text-dark" href="addproduct">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="#">Orders</a>

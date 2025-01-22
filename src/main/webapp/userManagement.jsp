@@ -50,6 +50,7 @@
     <h2 class="text-center mb-4">User Management</h2>
 
     <!-- Search and Add User -->
+<%--
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="input-group w-50">
             <input type="text" class="form-control" placeholder="Search users..." id="searchUser">
@@ -57,13 +58,14 @@
         </div>
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal" id="addUserBtn">Add User</button>
     </div>
+--%>
 
     <!-- User Table -->
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead class="table-primary">
             <tr>
-                <th>#</th>
+                <th>ID</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Role</th>
@@ -98,7 +100,6 @@
                             data-id="<%= user.getUserId() %>">
                         <i class="bi bi-trash"></i> Delete
                     </button>
-
                 </td>
             </tr>
             <%
@@ -171,22 +172,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editUserForm">
+                <form id="editUserForm" action="updateUser" method="post">
                     <div class="mb-3">
                         <label for="editId" class="form-label">UserID</label>
-                        <input type="text" class="form-control" id="editId" readonly>
+                        <input name="id" type="text" class="form-control" id="editId" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="editUsername" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="editUsername" required>
+                        <input name="name" type="text" class="form-control" id="editUsername" required>
                     </div>
                     <div class="mb-3">
                         <label for="editEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="editEmail" required>
+                        <input name="email" type="email" class="form-control" id="editEmail" required>
                     </div>
                     <div class="mb-3">
                         <label for="editRole" class="form-label">Role</label>
-                        <select class="form-select" id="editRole" required>
+                        <select name="role" class="form-select" id="editRole" required>
                             <option value="Admin">Admin</option>
                             <option value="User">User</option>
                         </select>
@@ -198,18 +199,65 @@
     </div>
 </div>
 
+<!-- Delete User Model-->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteUserModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this user?</p>
+            </div>
+            <div class="modal-footer">
+                <form id="deleteUserForm" action="deleteUser" method="post">
+                    <input type="hidden" name="id" id="deleteUserId">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="JQ/jquery-3.7.1.min.js"></script>
 <script>
     // For Edit User Modal functionality
-    $(document).on('click', '#edit-btn', function() {
+    $(document).on('click', '#edit-btn', function () {
+        console.log("button")
+        // Retrieve user data from data attributes
         var userId = $(this).data('id');
         var username = $(this).data('username');
         var email = $(this).data('email');
         var role = $(this).data('role');
 
+        // Populate the modal form with user data
         $('#editId').val(userId);
         $('#editUsername').val(username);
         $('#editEmail').val(email);
         $('#editRole').val(role);
+    });
+
+
+
+    // Get the delete modal element
+    const deleteUserModal = document.getElementById('deleteUserModal');
+
+    // Add an event listener to the modal when it is about to be shown
+    deleteUserModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        const button = event.relatedTarget;
+
+        // Extract user ID from data-* attribute
+        const userId = button.getAttribute('data-id');
+
+        // Get the delete modal hidden input
+        const deleteUserIdInput = document.getElementById('deleteUserId');
+
+        // Set the hidden input value with the user ID
+        deleteUserIdInput.value = userId;
     });
 </script>
 

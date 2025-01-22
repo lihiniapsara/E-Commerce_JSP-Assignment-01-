@@ -1,4 +1,4 @@
-package lk.ijse.assignment_01_jsp.controller;
+package lk.ijse.assignment_01_jsp.controller.UserController;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -50,7 +50,7 @@ public class AddUserServlet extends HttpServlet {
                 session.close();
             }
         }
-        resp.sendRedirect("addUser");
+        resp.sendRedirect("adduser");
     }
 
     @Override
