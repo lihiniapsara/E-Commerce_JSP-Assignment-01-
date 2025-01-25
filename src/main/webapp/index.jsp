@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="lk.ijse.assignment_01_jsp.entity.Product" %><%--
   Created by IntelliJ IDEA.
   User: LIHINI
   Date: 1/16/2025
@@ -278,18 +279,49 @@
 
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
     <!-- Product Card 1 -->
+
+    <%
+      List<Product> products = (List<Product>) request.getAttribute("products");
+      if (products != null && !products.isEmpty()) {
+        for (Product product : products) {
+
+    %>
+
+    <%--<%
+      if(products != null){
+      for (Product product : products) {
+
+    %>--%>
+
+
+
     <div class="col">
       <div class="card border-0">
-        <img src="images/product2-300x300.png" class="card-img-top" alt="Product 1">
+        <img src="<%= request.getContextPath() %>/uploads/<%= product.getImageUrl() %>" alt="Product Image" class="card-img-top" style="border-radius: 15px; height: 180px; object-fit: cover; margin-bottom: 15px;">
+        <h5 class="card-title" style="font-size: 2.2rem; color: #333;"><%= product.getName() %></h5>
+<%--
+        <h5 class="card-title" style="font-size: 1.0rem; color: #333;"><%= product.getDescription() %></h5>
+--%>
+
+        <p class="card-price" style="color: #c4874a; font-size: 1.4rem;">Rs <%= product.getPrice() %>/=</p>
+
+
         <div class="card-body text-center">
           <p class="text-muted small">2-3 years</p>
           <h5 class="card-title">Sed tempus</h5>
-          <a href="#" class="btn btn-outline-danger btn-sm">Read more</a>
+          <a href="#" class="btn btn-outline-danger btn-sm">Add to cart</a>
         </div>
       </div>
     </div>
 
-    <!-- Product Card 2 -->
+    <%
+        }
+      }
+    %>
+
+
+
+  <%--  <!-- Product Card 2 -->
     <div class="col">
       <div class="card border-0">
         <div class="position-relative">
@@ -383,7 +415,7 @@
       </div>
     </div>
   </div>
-
+--%>
   <!--  Pagination
    <div class="d-flex justify-content-center mt-4">
        <button class="btn btn-outline-secondary me-2">&lt;</button>
@@ -478,51 +510,6 @@
     </div>
   </div>
 
-  <section class="recomended for you">
-    <div class="container my-5">
-      <h2 class="text-center">Recommended For You</h2>
-      <div class="row mt-4 text-center">
-        <div class="col-6 col-md-2">
-          <img src="images/product5-300x300.png" alt="Item 1" class="img-fluid">
-          <p>0-1 years</p>
-          <p class="fw-bold">Sed tempus</p>
-          <p>$200.00</p>
-          <button class="btn btn-primary btn-sm">Add to Cart</button>
-        </div>
-        <div class="col-6 col-md-2">
-          <img src="images/product6-300x300.png" alt="Item 2" class="img-fluid">
-          <p>1-2 years</p>
-          <p class="fw-bold">Ictus mauris</p>
-          <p>$250.00</p>
-          <button class="btn btn-primary btn-sm">Add to Cart</button>
-        </div>
-        <div class="col-6 col-md-2">
-          <img src="images/product7-300x300.png" alt="Item 3" class="img-fluid">
-          <p>0-1 years</p>
-          <p class="fw-bold">Redio Sonens</p>
-          <p><span class="text-danger">$80.00</span> <del>$100.00</del></p>
-          <button class="btn btn-primary btn-sm">Add to Cart</button>
-        </div>
-        <div class="col-6 col-md-2">
-          <img src="images/product13-300x300.png" alt="Item 4" class="img-fluid">
-          <p>1-2 years</p>
-          <p class="fw-bold">Paque vitae</p>
-          <p>$300.00</p>
-          <button class="btn btn-primary btn-sm">Add to Cart</button>
-        </div>
-        <div class="col-6 col-md-2">
-          <img src="images/product14-300x300.png" alt="Item 5" class="img-fluid">
-          <p>0-1 years</p>
-          <p class="fw-bold">Red justo donew</p>
-          <p>$120.00</p>
-          <button class="btn btn-primary btn-sm">Add to Cart</button>
-        </div>
-      </div>
-      <div class="text-center mt-4">
-        <button class="btn btn-outline-primary">View All</button>
-      </div>
-    </div>
-  </section>
 
   <div class="container my-5">
     <div class="row">
