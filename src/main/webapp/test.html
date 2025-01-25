@@ -1,198 +1,1234 @@
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category Management</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Toys Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<!--
+<style>
 
-    <style>
-        /* Ensure footer sticks to the bottom */
-        body {
-            display: flex;
+   /* !* Hero Section Styles *!
+    .hero-section {
+        display: flex;
+        flex-wrap: wrap; !* Ensures responsiveness *!
+        align-items: center;
+        justify-content: space-between;
+        padding: 4rem 2rem;
+        background: linear-gradient(135deg, #f9d423, #ff4e50); !* Gradient background for a cheerful vibe *!
+        color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        margin: 2rem auto;
+        max-width: 1200px; !* Center the section with a max width *!
+    }
+
+    !* Content Area *!
+    .hero-content {
+        flex: 1;
+        margin-right: 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); !* Adds depth to the text *!
+    }
+
+    .hero-content p {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-content .btn {
+        padding: 15px 40px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        background-color: #ffffff;
+        color: #ff4e50;
+        border: 2px solid #ffffff;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+    }
+
+    .hero-content .btn:hover {
+        background-color: transparent;
+        color: #ffffff;
+        border: 2px solid #ffffff;
+        cursor: pointer;
+    }
+
+    !* Hero Image *!
+    .hero-image {
+        flex: 1;
+        text-align: center;
+    }
+
+    .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 20px; !* Adds a soft touch to the image *!
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        animation: float 3s ease-in-out infinite; !* Adds a subtle floating effect *!
+    }
+
+    !* Animation for Floating Image *!
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-15px);
+        }
+    }
+
+    !* Responsive Design *!
+    @media (max-width: 768px) {
+        .hero-section {
             flex-direction: column;
-            min-height: 100vh;
-        }
-        main {
-            flex: 1; /* Make the main section take up remaining space */
-        }
-        footer {
-            background-color: #343a40;
-            color: #ffffff;
+            padding: 3rem 1rem;
             text-align: center;
         }
+
+        .hero-content {
+            margin-right: 0;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+        }
+    }*/
+
+
+    /* General Container Styling */
+    .container-product {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Buttons Styling */
+    .container-product > .btn-outline-primary,
+    .btn-outline-secondary {
+        border-width: 2px;
+        padding: 10px 20px;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .container-product > .btn-outline-primary:hover,
+    .btn-outline-secondary:hover {
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+
+    .btn-outline-danger {
+        border-width: 2px;
+        padding: 5px 15px;
+        font-size: 14px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn-outline-danger:hover {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    /* Product Cards */
+    .card {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-img-top {
+        transform: scale(1.05);
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-body h5 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card-body p {
+        font-size: 14px;
+        color: #6c757d;
+    }
+
+    .card-body .fw-bold {
+        font-size: 16px;
+        color: #343a40;
+    }
+
+    .card-body .text-danger {
+        color: #dc3545 !important;
+    }
+
+    /* Badge Styling */
+    .badge {
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    /* Grid Spacing */
+    .row-cols-1 .col,
+    .row-cols-sm-2 .col,
+    .row-cols-md-4 .col {
+        margin-bottom: 20px;
+    }
+
+    .g-4 > .col {
+        padding: 15px;
+    }
+
+    /* Pagination Styling */
+    /* Uncomment if needed
+    .d-flex button {
+        font-weight: bold;
+        border: 2px solid #6c757d;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .d-flex button:hover {
+        background-color: #6c757d;
+        color: #fff;
+    } */
+
+
+
+    /* General Container */
+    .container {
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    /* Title Styling */
+    h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    h1 span {
+        color: #ff6363;
+    }
+
+    /* Circle Image Container */
+    .circle-container {
+        position: relative;
+        width: 100%;
+        padding-top: 100%; /* Square aspect ratio */
+        overflow: hidden;
+        border-radius: 50%;
+        background-color: #f0f0f0; /* Light background for circle */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .circle-img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%; /* Adjust image size to fit the circle */
+        object-fit: cover;
+    }
+
+    /* Text Styling */
+    .center-text {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333;
+        margin-top: 10px;
+    }
+
+    /* Row and Column Layout */
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .col-md-2,
+    .col-6 {
+        flex: 1 1 30%;
+        max-width: 200px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    /* Mobile Layout Adjustments */
+    @media (max-width: 768px) {
+        .col-md-2 {
+            flex: 1 1 45%;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .col-md-2 {
+            flex: 1 1 100%;
+        }
+    }
+
+    /* Add some space between the rows */
+    .mt-4 {
+        margin-top: 2rem;
+    }
+
+    /* Optional: Styling for the section background */
+    section {
+        background-color: #fafafa;
+        padding: 40px 0;
+    }
+
+
+
+
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    /* Limited Period Offer Section */
+    .limited-offer {
+        text-align: left;
+        padding: 50px;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .limited-offer h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .limited-offer p {
+        font-size: 1.25rem;
+        color: #ff6363;
+    }
+
+    .timer {
+        display: flex;
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .time-box {
+        text-align: center;
+        font-size: 1.5rem;
+        background-color: #f2f2f2;
+        padding: 15px;
+        border-radius: 5px;
+        width: 80px;
+    }
+
+    .shop-now-btn {
+        display: inline-block;
+        background-color: #ff6363;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        margin-top: 20px;
+    }
+
+    .shop-now-btn:hover {
+        background-color: #e55a5a;
+    }
+
+    /* Recommended For You Section */
+    .recomended-for-you h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .recomended-for-you .row {
+        gap: 30px;
+    }
+
+    .recomended-for-you img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+    .recomended-for-you .col-6 {
+        margin-bottom: 30px;
+    }
+
+    .recomended-for-you .fw-bold {
+        font-weight: bold;
+    }
+
+    .recomended-for-you .btn-primary {
+        background-color: #ff6363;
+        border: none;
+        margin-top: 10px;
+    }
+
+    .recomended-for-you .btn-primary:hover {
+        background-color: #e55a5a;
+    }
+
+    .recomended-for-you .text-center {
+        margin-top: 30px;
+    }
+
+    .recomended-for-you .btn-outline-primary {
+        border: 2px solid #ff6363;
+        color: #ff6363;
+        padding: 10px 30px;
+        border-radius: 5px;
+    }
+
+    .recomended-for-you .btn-outline-primary:hover {
+        background-color: #ff6363;
+        color: white;
+    }
+
+    /* Featured Section */
+    .d-flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #f4f4f4;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+    }
+
+    .d-flex img {
+        max-width: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .d-flex .text-left {
+        max-width: 60%;
+    }
+
+    .d-flex .btn-danger {
+        background-color: #ff6363;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        font-size: 1.1rem;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .d-flex .btn-danger:hover {
+        background-color: #e55a5a;
+    }
+
+    /* Footer Section */
+    footer {
+        background-color: #ADD8E6;
+        padding: 50px 0;
+        color: white;
+    }
+
+    footer h5 {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    footer p {
+        font-size: 1rem;
+        margin: 10px 0;
+    }
+
+    footer ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    footer ul li {
+        margin: 5px 0;
+    }
+
+    footer .text-center p {
+        font-size: 0.9rem;
+    }
+
+    footer .text-center {
+        margin-top: 20px;
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 768px) {
+        .limited-offer {
+            text-align: center;
+        }
+
+        .timer {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .shop-now-btn {
+            margin-top: 20px;
+        }
+
+        .recomended-for-you .row {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .d-flex {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .d-flex .text-left {
+            text-align: center;
+        }
+
+        footer h5 {
+            font-size: 1.1rem;
+        }
+    }
+
+
+
+
+</style>
+-->
+
+    <style>
+        /* General Reset and Styling */
+        /* General Reset and Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+            color: #212529;
+        }
+
+
+        /*
+        header section
+        */
+
+        /* Header Styles */
+
+
+
+
+
+
+
+
+        /* Limited Period Offer Section */
+        .limited-offer {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #ff9a8b, #ff6a88);
+            color: #fff;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .limited-offer h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .limited-offer p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .limited-offer .timer {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .limited-offer .time-box {
+            background: #fff;
+            color: #333;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .limited-offer .shop-now-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #fff;
+            background: #28a745;
+            border: none;
+            border-radius: 50px;
+            transition: 0.3s ease-in-out;
+            text-decoration: none;
+        }
+
+        .limited-offer .shop-now-btn:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
+
+        /* Recommended For You Section */
+        .recommended-for-you {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .recommended-for-you h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: #0056b3;
+        }
+
+        .recommended-for-you .product-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .recommended-for-you .product-card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .recommended-for-you .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .recommended-for-you .btn-primary {
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+            background: #007bff;
+            border: none;
+            border-radius: 50px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .recommended-for-you .btn-primary:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Star War Toys Section */
+        .star-war-toys {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            background: #f7f8fc;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .star-war-toys .text-content {
+            flex: 1;
+            margin-right: 2rem;
+        }
+
+        .star-war-toys h3 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+
+        .star-war-toys p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #495057;
+        }
+
+        .star-war-toys .btn-danger {
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+            background: #dc3545;
+            border: none;
+            border-radius: 50px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .star-war-toys .btn-danger:hover {
+            background: #bd2130;
+            transform: scale(1.05);
+        }
+
+        .star-war-toys img {
+            flex: 1;
+            max-width: 300px;
+            border-radius: 8px;
+        }
+
+        /* Footer Section */
+        footer {
+            background: linear-gradient(135deg, #4b6cb7, #182848);
+            color: #fff;
+            padding: 3rem 1rem;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        footer .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        footer .footer-column {
+            flex: 1 1 calc(33.333% - 1rem);
+            min-width: 250px;
+        }
+
+        footer h5 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        footer h5::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #ffdd57;
+            margin-top: 0.5rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+        }
+
+        footer ul li {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer ul li a {
+            color: #ffdd57;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #fff;
+        }
+
+        footer .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        footer .social-icons a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ffdd57;
+            border-radius: 50%;
+            color: #ffdd57;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        footer .social-icons a:hover {
+            background: #ffdd57;
+            color: #182848;
+            transform: scale(1.1);
+        }
+
+        footer .copyright {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+
     </style>
 </head>
 <body>
 
-<header class="bg-light py-3 border-bottom">
+<!-- Header Section -->
+<header class="bg-light py-3 position-fixed w-100 border-bottom" style="z-index: 1030;">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <div>
+            <!-- Left Section -->
+            <div class="d-flex align-items-center">
                 <img src="images/toys-mania-42.png" alt="Toys Store Logo">
             </div>
+
+            <!-- Right Section: Navigation -->
             <nav class="d-flex flex-grow-1 justify-content-center align-items-center">
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link text-dark" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="#">Users</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="#">Category</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="#">Products</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="#">Orders</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">On Sale</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">Contact Us</a>
+                    </li>
                 </ul>
             </nav>
-            <div>
-                <a href="admin_dashboard.jsp" class="text-dark"><i class="bi bi-box-arrow-right"></i></a>
+
+            <!-- Icons Section -->
+            <div class="d-flex">
+
+                <a href="#" class="text-dark me-3"><i class="bi bi-search"></i></a>
+                <a href="#" class="text-dark me-3"><i class="bi bi-heart"></i></a>
+                <a href="registration.jsp" class="text-dark me-3"><i class="bi bi-person"></i></a>
+                <a href="#" class="text-dark me-3"><i class="bi bi-cart"></i></a>
+                <a href="#" class="text-dark"><i class="bi bi-box-arrow-right"></i></a>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Section -->
-<main class="container my-5">
-    <h2 class="mb-4">Category Management</h2>
+<a href="admin_dashboard.jsp">Admin Dashboard</a>
 
-    <!-- Add Category Button -->
-    <div class="d-flex justify-content-end mb-3">
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Add Category</button>
+<!-- Hero Section -->
+
+<section class="hero-section d-flex align-items-center">
+    <div class="hero-content">
+        <h1 class="main">Best Toys For Kids</h1>
+        <p>Starting from $9</p>
+        <button class="btn btn-primary btn-lg">Shop Now</button>
     </div>
 
-    <!-- Category Table -->
-    <table class="table table-bordered">
-        <thead class="table-dark">
-        <tr>
-            <th>Category Code</th>
-            <th>Category Name</th>
-            <th>Description</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <%
-        // Retrieve categories from backend
-        List<Category> categories = (List<Category>) request.getAttribute("categories");
-            if (categories != null && !categories.isEmpty()) {
-            for (Category category : categories) {
-            %>
-            <tr>
-                <td><%= category.getId() %></td>
-                <td><%= category.getName() %></td>
-                <td><%= category.getDescription() %></td>
-                <td>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editCategoryModal"
-                            data-categorycode="<%= category.getId() %>"
-                            data-categoryname="<%= category.getName() %>"
-                            data-description="<%= category.getDescription() %>">
-                        Edit
-                    </button>
-                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"
-                            data-categorycode="<%= category.getId() %>">
-                        Delete
-                    </button>
-                </td>
-            </tr>
-            <%
-            }
-            } else {
-            %>
-            <tr>
-                <td colspan="4" class="text-center">No categories found</td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
-</main>
 
-<footer class="py-4">
-    <div class="container">
-        <p class="mb-0">&copy; 2025 Toys Store. All Rights Reserved.</p>
+
+    <div class="hero-image">
+        <img src="images/mainnew.png" alt="Baby with Teddy">
     </div>
-</footer>
+</section>
 
-<!-- Add Category Modal -->
-<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="addcategory" method="post">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addCategoryModalLabel">Add Category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Product Section -->
+<section class="container-product my-5">
+    <div class="text-center mb-4">
+        <button class="btn btn-outline-primary mx-2">Best Seller</button>
+        <button class="btn btn-outline-secondary mx-2">New Arrivals</button>
+        <button class="btn btn-outline-secondary mx-2">On Sale</button>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+        <!-- Product Card 1 -->
+        <div class="col">
+            <div class="card border-0">
+                <img src="images/product2-300x300.png" class="card-img-top" alt="Product 1">
+                <div class="card-body text-center">
+                    <p class="text-muted small">2-3 years</p>
+                    <h5 class="card-title">Sed tempus</h5>
+                    <a href="#" class="btn btn-outline-danger btn-sm">Read more</a>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="categoryName" class="form-label">Category Name</label>
-                        <input type="text" class="form-control" id="categoryName" name="name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="description" name="description" required>
-                    </div>
+            </div>
+        </div>
+
+        <!-- Product Card 2 -->
+        <div class="col">
+            <div class="card border-0">
+                <div class="position-relative">
+                    <span class="badge bg-danger text-white position-absolute top-0 start-0 m-2">$100.00</span>
+                    <img src="images/product3-300x300.png" class="card-img-top" alt="Product 2">
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Add Category</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <div class="card-body text-center">
+                    <p class="text-muted small">5-8 years</p>
+                    <h5 class="card-title">Mauris cursus</h5>
+                    <p><s>$599.00</s> <span class="text-danger fw-bold">$499.00</span></p>
+                    <a href="#" class="btn btn-outline-danger btn-sm">Add to cart</a>
                 </div>
-            </form>
+            </div>
+        </div>
+
+        <!-- Product Card 3 -->
+        <div class="col">
+            <div class="card border-0">
+                <div class="position-relative">
+                    <span class="badge bg-danger text-white position-absolute top-0 start-0 m-2">$100.00</span>
+                    <img src="images/product4-300x300.png" class="card-img-top" alt="Product 3">
+                </div>
+                <div class="card-body text-center">
+                    <p class="text-muted small">3-5 years</p>
+                    <h5 class="card-title">Aenean tortor</h5>
+                    <p><s>$799.00</s> <span class="text-danger fw-bold">$699.00</span></p>
+                    <a href="#" class="btn btn-outline-danger btn-sm">Add to cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Card 4 -->
+        <div class="col">
+            <div class="card border-0">
+                <img src="images/product6-300x300.png" class="card-img-top" alt="Product 4">
+                <div class="card-body text-center">
+                    <p class="text-muted small">1-2 years</p>
+                    <h5 class="card-title">Iectus mauris</h5>
+                    <p class="fw-bold">$399.00</p>
+                    <a href="#" class="btn btn-outline-danger btn-sm">Add to cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Product Cards (Repeat as needed) -->
+        <div class="col">
+            <div class="card border-0">
+                <img src="images/product7-300x300.png" class="card-img-top" alt="Product 5">
+                <div class="card-body text-center">
+                    <p class="text-muted small">0-1 years</p>
+                    <h5 class="card-title">Redlo Sonews</h5>
+                    <p class="fw-bold">$300.00</p>
+                    <a href="#" class="btn btn-outline-danger btn-sm">Add to cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card border-0">
+                <img src="images/product8-300x300.png" class="card-img-top" alt="Product 6">
+                <div class="card-body text-center">
+                    <p class="text-muted small">3-5 years</p>
+                    <h5 class="card-title">Drasd donews</h5>
+                    <p class="fw-bold">$500.00</p>
+                    <a href="#" class="btn btn-outline-danger btn-sm">Add to cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card border-0">
+                <img src="images/product9-300x300.png" class="card-img-top" alt="Product 7">
+                <div class="card-body text-center">
+                    <p class="text-muted small">2-3 years</p>
+                    <h5 class="card-title">Wusto donews</h5>
+                    <p class="fw-bold">$300.00</p>
+                    <a href="#" class="btn btn-outline-danger btn-sm">Add to cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card border-0">
+                <img src="images/product12-300x300.png" class="card-img-top" alt="Product 8">
+                <div class="card-body text-center">
+                    <p class="text-muted small">2-3 years</p>
+                    <h5 class="card-title">Erat scelerisqu</h5>
+                    <p class="fw-bold text-danger">$1,199.00</p>
+                    <a href="#" class="btn btn-outline-danger btn-sm">Add to cart</a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Edit Category Modal -->
-<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="updateCategory" method="post">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!--  Pagination
+     <div class="d-flex justify-content-center mt-4">
+         <button class="btn btn-outline-secondary me-2">&lt;</button>
+         <button class="btn btn-outline-secondary">&gt;</button>
+     </div>-->
+</section>
+
+<section class="container my-5">
+    <!-- Shop By Age Section -->
+    <div class="container text-center my-5">
+        <h1 class="fw-bold">Shop By <span style="color: #ff6363;">Age</span></h1>
+
+        <!-- First Row -->
+        <div class="row mt-4">
+            <div class="col-md-2 col-6 mb-4">
+                <div class="circle-container">
+                    <img src="images/cate1.png" alt="0-1 Years" class="circle-img">
                 </div>
-                <div class="modal-body">
-                    <input type="hidden" id="editCategoryCode" name="categoryCode">
-                    <div class="mb-3">
-                        <label for="editCategoryName" class="form-label">Category Name</label>
-                        <input type="text" class="form-control" id="editCategoryName" name="categoryName" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="editDescription" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="editDescription" name="description" required>
-                    </div>
+                <p class="center-text">0-1 years</p>
+            </div>
+            <div class="col-md-2 col-6 mb-4">
+                <div class="circle-container">
+                    <img src="images/cat2.png" alt="1-2 Years" class="circle-img">
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Update Category</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <p>1-2 years</p>
+            </div>
+            <div class="col-md-2 col-6 mb-4">
+                <div class="circle-container">
+                    <img src="images/cate3.png" alt="2-3 Years" class="circle-img">
                 </div>
-            </form>
+                <p>2-3 years</p>
+            </div>
+        </div>
+
+        <!-- Second Row -->
+        <div class="row">
+            <div class="col-md-2 col-6 mb-4">
+                <div class="circle-container">
+                    <img src="images/cat4.png" alt="3-5 Years" class="circle-img">
+                </div>
+                <p>3-5 years</p>
+            </div>
+            <div class="col-md-2 col-6 mb-4">
+                <div class="circle-container">
+                    <img src="images/cat5.png" alt="5-8 Years" class="circle-img">
+                </div>
+                <p>5-8 years</p>
+            </div>
+            <div class="col-md-2 col-6 mb-4">
+                <div class="circle-container">
+                    <img src="images/cat6.png" alt="8-12 Years" class="circle-img">
+                </div>
+                <p>8-12 years</p>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- Delete Category Modal -->
-<div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="deleteCategory" method="post">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteCategoryModalLabel">Delete Category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<section class="container my-5">
+    <!-- Limited Period Offer Section -->
+    <div class="row">
+        <!-- Content Section on the Left -->
+        <div class="col-md-6">
+            <div class="limited-offer">
+                <h1>Limited Period Offer</h1>
+                <p class="fs-5">Buy 2 and get 30% off</p>
+                <div class="timer">
+                    <div class="time-box">
+                        <span>00</span>
+                        <div>Days</div>
+                    </div>
+                    <div class="time-box">
+                        <span>00</span>
+                        <div>Hours</div>
+                    </div>
+                    <div class="time-box">
+                        <span>00</span>
+                        <div>Minutes</div>
+                    </div>
+                    <div class="time-box">
+                        <span>00</span>
+                        <div>Seconds</div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to delete this category?</p>
-                    <input type="hidden" id="deleteCategoryCode" name="categoryCode">
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </form>
+                <a href="#" class="shop-now-btn">Shop Now</a>
+            </div>
+        </div>
+
+        <!-- Image Section on the Right -->
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <img src="images/Screenshot_2025-01-18_103333-removebg-preview.png" alt="Offer Image" class="img-fluid">
         </div>
     </div>
-</div>
+
+    <section class="recomended for you">
+        <div class="container my-5">
+            <h2 class="text-center">Recommended For You</h2>
+            <div class="row mt-4 text-center">
+                <div class="col-6 col-md-2">
+                    <img src="images/product5-300x300.png" alt="Item 1" class="img-fluid">
+                    <p>0-1 years</p>
+                    <p class="fw-bold">Sed tempus</p>
+                    <p>$200.00</p>
+                    <button class="btn btn-primary btn-sm">Add to Cart</button>
+                </div>
+                <div class="col-6 col-md-2">
+                    <img src="images/product6-300x300.png" alt="Item 2" class="img-fluid">
+                    <p>1-2 years</p>
+                    <p class="fw-bold">Ictus mauris</p>
+                    <p>$250.00</p>
+                    <button class="btn btn-primary btn-sm">Add to Cart</button>
+                </div>
+                <div class="col-6 col-md-2">
+                    <img src="images/product7-300x300.png" alt="Item 3" class="img-fluid">
+                    <p>0-1 years</p>
+                    <p class="fw-bold">Redio Sonens</p>
+                    <p><span class="text-danger">$80.00</span> <del>$100.00</del></p>
+                    <button class="btn btn-primary btn-sm">Add to Cart</button>
+                </div>
+                <div class="col-6 col-md-2">
+                    <img src="images/product13-300x300.png" alt="Item 4" class="img-fluid">
+                    <p>1-2 years</p>
+                    <p class="fw-bold">Paque vitae</p>
+                    <p>$300.00</p>
+                    <button class="btn btn-primary btn-sm">Add to Cart</button>
+                </div>
+                <div class="col-6 col-md-2">
+                    <img src="images/product14-300x300.png" alt="Item 5" class="img-fluid">
+                    <p>0-1 years</p>
+                    <p class="fw-bold">Red justo donew</p>
+                    <p>$120.00</p>
+                    <button class="btn btn-primary btn-sm">Add to Cart</button>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary">View All</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="d-flex align-items-center p-5" style="background-color: #d4edda; border-radius: 8px;">
+                    <div class="text-left">
+                        <h3>Star War Toys</h3>
+                        <p>Libera dom condimentum mauris vel malesuada lorem nulla nec enim.</p>
+                        <button class="btn btn-danger">Shop Now</button>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="images/Screenshot_2025-01-18_103504-removebg-preview.png" alt="Star War Toy" class="img-fluid" style="max-height: 200px;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex align-items-center p-5" style="background-color: #562256; border-radius: 8px;">
+                    <div class="ml-auto">
+                        <img src="images/Screenshot_2025-01-18_103504-removebg-preview%20(1).png" alt="Space Toy" class="img-fluid mb-3" style="max-height: 200px;">
+                    </div>
+                    <div class="text-left">
+                        <h3>Star War Toys</h3>
+                        <p>Libera dom condimentum mauris vel malesuada lorem nulla nec enim.</p>
+                        <button class="btn btn-danger">Shop Now</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer style="background-color: #ADD8E6; color: white; padding: 2rem 0;">
+        <div class="container">
+            <div class="row">
+                <!-- Welcome Section -->
+                <div class="col-md-3">
+                    <h5>Welcome</h5>
+                    <p>Porttitor pharetra ullamcorper. Praesent varius erat vitae nibh laoreet cursus. Donec suscipit gravida viverra.</p>
+                    <p>Phasellus id nibh arcu a varius enim tempus a.</p>
+                </div>
+
+                <!-- More About Store -->
+                <div class="col-md-3">
+                    <h5>More About Store</h5>
+                    <ul class="list-unstyled">
+                        <li>Multiple Branches</li>
+                        <li>Take Franchise</li>
+                        <li>Scheduled Offers</li>
+                        <li>FAQ</li>
+                        <li>More Links</li>
+                        <li>Terms</li>
+                    </ul>
+                </div>
+
+                <!-- Key Links -->
+                <div class="col-md-3">
+                    <h5>Key Links</h5>
+                    <ul class="list-unstyled">
+                        <li>Order</li>
+                        <li>Download</li>
+                        <li>Address</li>
+                        <li>Logout</li>
+                        <li>Lost Password</li>
+                        <li>Register</li>
+                    </ul>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="col-md-3">
+                    <h5>Contact Details</h5>
+                    <p>Wheeling, West Virginia, 26003</p>
+                    <p>Contact: 304-559-3023</p>
+                    <p>Email: shopnow@store.com</p>
+                    <p>Email: contact@ama.com</p>
+                </div>
+            </div>
+
+            <!-- Copyright Section -->
+            <div class="row mt-4">
+                <div class="col text-center">
+                    <p class="mb-0">&copy; Copyright | Th Shop Mania | Developed by ThemeHunk</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</section>
+</body>
 
 <!-- Bootstrap JS -->
-<script src="JQ/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-</body>
 </html>
+
+

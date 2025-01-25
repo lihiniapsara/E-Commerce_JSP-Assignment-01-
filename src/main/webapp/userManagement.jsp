@@ -50,15 +50,17 @@
     <h2 class="text-center mb-4">User Management</h2>
 
     <!-- Search and Add User -->
-<%--
+
     <div class="d-flex justify-content-between align-items-center mb-3">
+<%--
         <div class="input-group w-50">
             <input type="text" class="form-control" placeholder="Search users..." id="searchUser">
             <button class="btn btn-primary" type="button">Search</button>
         </div>
+--%>
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal" id="addUserBtn">Add User</button>
     </div>
---%>
+
 
     <!-- User Table -->
     <div class="table-responsive">

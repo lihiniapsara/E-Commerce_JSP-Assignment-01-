@@ -72,7 +72,7 @@
                         <a class="nav-link text-dark" href="addcategory">Category</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="addproduct">Products</a>
+                        <a class="nav-link text-dark" href="getProductList">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="#">Orders</a>
