@@ -1,3 +1,11 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: LIHINI
+  Date: 1/26/2025
+  Time: 11:51 AM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,14 +39,14 @@
 <body>
 <div class="form-container">
     <h2>Change Password</h2>
-    <form action="change_password.jsp" method="POST">
+    <form action="ChangePassword" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="text" class="form-control" id="email" name="customerId" placeholder="Enter your Customer ID" required>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Enter your Email" required>
         </div>
         <div class="mb-3">
             <label for="newPassword" class="form-label">New Password</label>
-            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter New Password" required>
+            <input type="password" class="form-control" id="newPassword" name="password" placeholder="Enter New Password" required>
         </div>
         <div class="d-grid">
             <button type="submit" class="btn btn-primary">Change Password</button>
@@ -47,3 +55,4 @@
 </div>
 </body>
 </html>
+

@@ -56,7 +56,7 @@
                             <label for="remember-me">Remember me</label>
                         </div>
                     </div>
-                    <a href="#" class="text-decoration-none">Lost your password?</a>
+                    <a href="passwordChange.jsp" class="text-decoration-none">Lost your password?</a>
                 </form>
             </div>
 

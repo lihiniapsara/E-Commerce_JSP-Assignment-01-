@@ -276,7 +276,7 @@
         <a href="#" class="text-dark me-3"><i class="bi bi-heart"></i></a>
         <a href="registration.jsp" class="text-dark me-3"><i class="bi bi-person"></i></a>
         <a href="getCartData" class="text-dark me-3"><i class="bi bi-cart"></i></a>
-        <a href="#" class="text-dark"><i class="bi bi-box-arrow-right"></i></a>
+        <a href="getAllProductCustomerView" class="text-dark"><i class="bi bi-box-arrow-right"></i></a>
       </div>
     </div>
   </div>
