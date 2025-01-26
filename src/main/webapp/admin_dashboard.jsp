@@ -75,7 +75,7 @@
                         <a class="nav-link text-dark" href="getProductList">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Orders</a>
+                        <a class="nav-link text-dark" href="getAllOrders">Orders</a>
                     </li>
                 </ul>
             </nav>

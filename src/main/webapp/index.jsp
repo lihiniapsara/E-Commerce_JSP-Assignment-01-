@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="lk.ijse.assignment_01_jsp.entity.Product" %><%--
+<%@ page import="lk.ijse.assignment_01_jsp.entity.Product" %>
+<%@ page import="lk.ijse.assignment_01_jsp.entity.Category" %><%--
   Created by IntelliJ IDEA.
   User: LIHINI
   Date: 1/16/2025
@@ -14,99 +15,130 @@
   <title>Toys Store</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    /* Custom Styles */
-    .hero-section {
+    .custom-footer {
+      background-color: #293944; /* Example of a custom blue color */
+    }
+
+
+    /* Ensure the header content is aligned in a row */
+    header .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 2rem;
-      background-color: #eaf6ff; /* Light blue background */
+      flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+    }
+
+    /* Category Dropdown container */
+    header .container .my-4 {
+      display: flex;
+      align-items: center;
+      margin-right: 20px; /* Space to the right of the dropdown */
+    }
+
+    /* Category Dropdown itself */
+    #categoryDropdown {
+      width: 200px;
+      margin-left: 20px; /* Optional: Space between other elements and dropdown */
+    }
+
+    /* Ensure the dropdown doesn't have excessive margin */
+    input-group {
+      display: flex;
+    }
+
+
+    /* Navigation Styling */
+    header nav {
+      display: flex;
+      justify-content: center;  /* Center align the navigation items */
+      width: 100%;  /* Ensure navigation takes up full width */
+    }
+
+    header nav ul {
+      display: flex;
+      gap: 20px;  /* Space between each nav item */
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    header nav .nav-item {
+      display: flex;
+      align-items: center;
+    }
+
+    header nav .nav-link {
+      text-decoration: none;
+      color: #333;  /* Adjust the color if necessary */
+      font-weight: 500;  /* Optional: Adjust font weight */
+      transition: color 0.3s ease;
+    }
+
+    header nav .nav-link:hover {
+      color: #007bff;  /* Change color on hover */
+    }
+
+
+    .hero-section .btn-light {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-section .btn-light:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-section {
+      background-image: linear-gradient(to right, #486e98, #00bfff); /* Blue gradient */
     }
 
     .hero-section h1 {
-      font-size: 2.5rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Text shadow for emphasis */
+    }
+
+
+    /* Center the button within its parent container */
+    #buttonWrapper {
+        display: flex;
+        justify-content: center; /* Horizontally center the button */
+    }
+
+    #heroButton {
+        font-family: 'Poppins', sans-serif; /* Optional custom font */
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Button hover effect */
+    /*#heroButton:hover {
+        background-color: #0d6efd; !* Primary color background *!
+        color: #ffffff; !* White text on hover *!
+        transform: scale(1.1); !* Slight zoom-in effect *!
+    }*/
+
+
+    .time-box {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content-center;
+      border: 2px solid #0d6efd;
+      border-radius: 8px;
+      padding: 10px 15px;
+      min-width: 70px;
+    }
+
+    .time-box span {
+      font-size: 24px;
       font-weight: bold;
-      color: #123456;
+      color: #0d6efd;
     }
 
-    .hero-section p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
+    .time-box div {
+      font-size: 14px;
+      color: #6c757d;
     }
 
-    .hero-section .btn-shop {
-      background-color: #ff5757;
-      color: white;
-      border-radius: 20px;
-      padding: 10px 20px;
-    }
-
-    .hero-content {
-      flex: 1; /* Take up equal space */
-      text-align: left; /* Align text to the left */
-    }
-
-    .hero-image {
-      flex: 1; /* Take up equal space */
-      text-align: right; /* Align image to the right */
-    }
-
-    .hero-image img {
-      max-width: 100%; /* Ensure the image is responsive */
-      height: auto;
-
-    }
-
-    nav .nav-link {
-      font-family: 'Open Sans', sans-serif;
-    }
-
-    .main{
-      font-family: "Microsoft JhengHei Light";
-    }
-
-
-    .limited-offer {
-      background-color: #00c4cc;
-      color: white;
-      text-align: center;
-      padding: 50px 20px;
-    }
-
-    .limited-offer h1 {
-      font-weight: bold;
-    }
-
-    .timer {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 20px 0;
-    }
-
-    .timer .time-box {
-      background: white;
-      color: #00c4cc;
-      border-radius: 10px;
-      padding: 15px;
-      font-size: 18px;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .shop-now-btn {
-      background: #ff6363;
-      color: white;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 25px;
-      text-decoration: none;
-    }
-
-    .shop-now-btn:hover {
-      background: #d95454;
-      text-decoration: none;
-    }
 
     .row {
       justify-content: space-evenly;
@@ -152,56 +184,62 @@
       padding: 2rem;
     }
 
-    /* Text Alignment */
-    .text-center {
-      text-align: center;
-    }
-
-    /* Buttons */
-    .btn-danger {
-      background-color: #dc3545;
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 5px;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-    }
-
-    .btn-danger:hover {
-      background-color: #a71d2a;
-    }
-
-    /* Green Background Style */
-    .d-flex {
+    body {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    #footer {
+      margin-top: auto;
     }
 
-    /* Adjust Text Alignment */
-    .text-left {
-      flex: 1;
-      margin-right: 20px;
-      text-align: left;
+    /* Background color for the Shop By Age Section */
+    /* Background color for the Shop By Age Section */
+    #shop-by-age {
+      background: linear-gradient(135deg, #ff00ff, #fc027f);  /* Light grey to slightly darker grey gradient */
+      padding: 30px 0;
+      border-radius: 10px; /* Optional: rounded corners */
+    }
+
+    #shop-by-age h1 {
+      color: #333; /* Dark color for the header */
+    }
+
+    #shop-by-age p {
+      color: #555; /* Slightly lighter color for text */
+    }
+
+    /* Background color for the Limited Period Offer Section */
+    #limited-offer {
+      background: linear-gradient(135deg, #ffefdb, #fbd97b); /* Soft yellow to light orange gradient */
+      padding: 30px ; /* Remove padding */
+      border-radius: 10px; /* Optional: rounded corners */
+    }
+
+    #limited-offer .row {
+      margin: 0; /* Remove row margin */
+    }
+
+    #limited-offer .col-md-6 {
+      padding: 0; /* Remove column padding */
+    }
+
+    .time-box {
+      background: linear-gradient(135deg, #f0f8ff, #d9ebff); /* Light blue to even lighter blue gradient */
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      margin: 0; /* Remove margin */
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff6363, #ff1f1f); /* Red to darker red gradient for the button */
+      border-color: #ff6363;
     }
 
 
 
 
-    /* Green Background */
-    .d-flex[style*="background-color: #d4edda;"] {
-      background-color: #d4edda; /* Light green */
-      border-radius: 8px;
-      padding: 20px;
-    }
-
-    /* If you want to adjust further the layout */
-    .d-flex[style*="background-color: #ff00ff;"] {
-      background-color: #ff00ff; /* Green background */
-      border-radius: 8px;
-      padding: 20px;
-    }
 
 
   </style>
@@ -246,9 +284,9 @@
 %>
 
 <!-- Header Section -->
-<header class="bg-light py-3 border-bottom">
+<header class="bg-light py-0 position-fixed w-100 border-bottom">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex flex-grow-1 justify-content-between align-items-center">
       <!-- Left Section -->
       <div class="d-flex align-items-center">
         <img src="images/toys-mania-42.png" alt="Toys Store Logo">
@@ -256,7 +294,7 @@
 
       <!-- Right Section: Navigation -->
       <nav class="d-flex flex-grow-1 justify-content-center align-items-center">
-        <ul class="nav">
+        <ul class="nav ">
           <li class="nav-item">
             <a class="nav-link text-dark" href="getAllProductCustomerView">Home</a>
           </li>
@@ -268,15 +306,46 @@
           </li>
         </ul>
       </nav>
+      <div class="container my-4">
+        <%
+          List<Category> categoriess = (List<Category>) request.getAttribute("categories");
+
+        %>
+
+        <!-- Dropdown for category names -->
+        <div class="input-group mb-3">
+          <!-- Dropdown to select category -->
+          <form action="getProductViceCategory" id="searchForm">
+            <select name="categoryId" id="categoryDropdown" class="form-select mb-4" onchange="handleCategoryChange()">
+              <option value="all">All Categories</option>
+              <%
+                if (categoriess != null) {
+                  for (Category category : categoriess) {
+              %>
+              <option value="<%= category.getId() %>"><%= category.getName() %></option>
+              <%
+                }
+              }else {
+              %>
+
+              <option disabled>No categories available</option>
+              <%
+                }
+              %>
+            </select>
+
+          </form>
+
+        </div>
+      </div>
 
       <!-- Icons Section -->
       <div class="d-flex">
 
-        <a href="#" class="text-dark me-3"><i class="bi bi-search"></i></a>
         <a href="#" class="text-dark me-3"><i class="bi bi-heart"></i></a>
-        <a href="registration.jsp" class="text-dark me-3"><i class="bi bi-person"></i></a>
-        <a href="getCartData" class="text-dark me-3"><i class="bi bi-cart"></i></a>
-        <a href="getAllProductCustomerView" class="text-dark"><i class="bi bi-box-arrow-right"></i></a>
+        <a href="registration.jsp" class="text-dark me-3" style="display: block"><i class="bi bi-person"></i></a>
+        <a href="#" class="nav-link position-relative me-3" onclick="ifnavigate()"><i class="bi bi-cart"></i></a>
+        <a href="getAllProductCustomerView" class="text-dark me-3"><i class="bi bi-box-arrow-right"></i></a>
       </div>
     </div>
   </div>
@@ -286,19 +355,29 @@
 
 <!-- Hero Section -->
 
-<section class="hero-section d-flex align-items-center">
-  <div class="hero-content">
-    <h1 class="main">Best Toys For Kids</h1>
-    <p>Starting from $9</p>
-    <button class="btn btn-primary btn-lg">Shop Now</button>
-  </div>
+<section class="hero-section d-flex align-items-center justify-content-between bg-primary text-white py-5 mt-3">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Hero Text Content -->
+      <div class="col-md-6 text-center text-md-start">
+        <h1 class="display-3 fw-bold" style="font-family: 'Poppins', sans-serif;">Best Toys For Kids</h1>
+        <p class="fs-4" style="font-family: 'Roboto', sans-serif;">Starting from <span class="fw-bold">$9</span></p>
+        <!-- Centered Button -->
+        <div id="buttonWrapper">
+          <button id="heroButton" class="btn btn-light btn-lg shadow mt-3" style="color: #0d6efd;">
+            <i class="bi bi-cart-plus me-2"></i>Shop Now
+          </button>
+        </div>
+      </div>
 
-
-
-  <div class="hero-image">
-    <img src="images/mainnew.png" alt="Baby with Teddy">
+      <!-- Hero Image -->
+      <div class="col-md-6 text-center">
+        <img src="images/mainnew.png" alt="Baby with Teddy" class="img-fluid rounded shadow">
+      </div>
+    </div>
   </div>
 </section>
+<a href="admin_dashboard.jsp">Admin Dashboard</a>
 
 <!-- Product Section -->
 <section class="container my-5">
@@ -337,10 +416,15 @@
         <p class="card-price" style="color: #c4874a; font-size: 1.4rem;">Rs <%= product.getPrice() %>/=</p>
 
 
-        <div class="card-body text-center">
-          <p class="text-muted small">2-3 years</p>
-          <h5 class="card-title">Sed tempus</h5>
-          <a href="#" class="btn btn-outline-danger btn-sm">Add to cart</a>
+        <div style="display: flex; justify-content: space-between;">
+          <form class="productForm" style="display: none;" method="get" action="getSingleProduct">
+            <input type="hidden" name="productId" value="<%= product.getId() %>">
+            <input type="hidden" name="userId" value="<%= userId %>">
+          </form>
+          <button class="btn btn-add-cart" onclick="submit(this,'.productForm')">Get Now</button>
+          <button class="btn-heart" data-bs-toggle="modal" data-bs-target="#addToCartModal<%= product.getId() %>">
+            <i class="bi bi-cart"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -382,38 +466,74 @@
 
 
     <script>
-      function addCart(button) {
-        // Get the modal form closest to the button clicked
-        var form = $(button).closest('form');
 
-        // Get product ID and quantity values from the form
-        var productId = form.find('input[name="productId"]').val();
-        var quantity = form.find('input[name="quantity"]').val();
+      function ifnavigate() {
+        let userid = <%= userId %>;  // Initialize userid here before using it
+        console.log(userid, 'cart ekata yanawa nadda kiyna eka');
+
+        if (userid == null || userid === "") {
+          alert("Please login first");
+        } else {
+          window.location.href = "getCartData";
+        }
+      }
+
+      function addCart(button) {
+        console.log(loginId, ' login id for add cart')
+
+
+        if (loginId != null) {
+          var form = $(button).closest('form');
+          var productId = form.find('input[name="productId"]').val();
+          var quantity = form.find('input[name="quantity"]').val();
 
         // Send an AJAX POST request to the server
-        $.ajax({
+          $.ajax({
           url: '/addToCart', // Your server endpoint
-          type: 'POST',
-          data: {
+                  type: 'POST',
+                  data: {
             productId: productId,
-            quantity: quantity
+                    quantity: quantity
           },
-          success: function(response) {
+          success: function (response) {
             // Handle success (e.g., show a message or update cart UI)
             alert('Product added to cart successfully!');
             // Optionally, close the modal
             $(form).closest('.modal').modal('hide');
           },
-          error: function(xhr, status, error) {
+          error: function (xhr, status, error) {
             // Handle error
             alert('Error adding product to cart: ' + error);
           }
         });
+      }else {
+        alert("Please login first");
+      }
       }
 
-      function submitForm(button) {
-        // Trigger the hidden form for the specific product
-        $(button).siblings('.productForm').submit();
+      function submit(button, link) {
+        console.log("me hutta en na");
+        let loginId = <%= userId %>;
+        console.log(loginId, "awa")
+        console.log(link, "link eka")
+        if (loginId != null) {
+          console.log("null na")
+          $(button).siblings(link).submit();
+        } else {
+          alert("login first");
+        }
+      }
+
+      function handleCategoryChange() {
+        let dropdown = document.getElementById('categoryDropdown');
+        let selectedValue = dropdown.value;
+
+        if (selectedValue !== 'all') {
+          document.getElementById('searchForm').submit();
+        } else {
+          // Optionally handle 'all' value differently
+          console.log('All categories selected, not submitting the form.');
+        }
       }
     </script>
 
@@ -519,7 +639,94 @@
    </div>-->
 </section>
 
-<section class="container my-5">
+<section id="shop-by-age" class="container p-0 my-0">
+  <!-- Shop By Age Section -->
+  <div class="container text-center p-0 my-0">
+    <h1 class="fw-bold">Shop By <span style="color: #0a0a0a;">Age</span></h1>
+
+    <!-- First Row -->
+    <div class="row mt-4">
+      <div class="col-md-2 col-6 mb-0">
+        <div class="circle-container">
+          <img src="images/cate1.png" alt="0-1 Years" class="circle-img">
+        </div>
+        <p class="center-text">0-1 years</p>
+      </div>
+      <div class="col-md-2 col-6 mb-0">
+        <div class="circle-container">
+          <img src="images/cat2.png" alt="1-2 Years" class="circle-img">
+        </div>
+        <p>1-2 years</p>
+      </div>
+      <div class="col-md-2 col-6 mb-0">
+        <div class="circle-container">
+          <img src="images/cate3.png" alt="2-3 Years" class="circle-img">
+        </div>
+        <p>2-3 years</p>
+      </div>
+    </div>
+
+    <!-- Second Row -->
+    <div class="row mb-0">
+      <div class="col-md-2 col-6 mb-0">
+        <div class="circle-container">
+          <img src="images/cat4.png" alt="3-5 Years" class="circle-img">
+        </div>
+        <p>3-5 years</p>
+      </div>
+      <div class="col-md-2 col-6 mb-0">
+        <div class="circle-container">
+          <img src="images/cat5.png" alt="5-8 Years" class="circle-img">
+        </div>
+        <p>5-8 years</p>
+      </div>
+      <div class="col-md-2 col-6 mb-0">
+        <div class="circle-container">
+          <img src="images/cat6.png" alt="8-12 Years" class="circle-img">
+        </div>
+        <p>8-12 years</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="limited-offer" class="container my-0">
+  <!-- Limited Period Offer Section -->
+  <div class="row align-items-center">
+    <!-- Content Section on the Left -->
+    <div class="col-md-6 text-center text-md-start">
+      <h1 class="fw-bold">Limited Period Offer</h1>
+      <p class="fs-5">Buy 2 and get <span class="text-danger fw-bold">30% off</span></p>
+      <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-4">
+        <div class="time-box">
+          <span class="fs-3 fw-bold text-primary">28</span>
+          <div>Days</div>
+        </div>
+        <div class="time-box">
+          <span class="fs-3 fw-bold text-primary">15</span>
+          <div>Hours</div>
+        </div>
+        <div class="time-box">
+          <span class="fs-3 fw-bold text-primary">38</span>
+          <div>Minutes</div>
+        </div>
+        <div class="time-box">
+          <span class="fs-3 fw-bold text-primary">22</span>
+          <div>Seconds</div>
+        </div>
+      </div>
+      <a href="#" class="btn btn-primary mt-4 px-4 py-2">Shop Now</a>
+    </div>
+
+    <!-- Image Section on the Right -->
+    <div class="col-md-6 text-center">
+      <img src="images/WhatsApp%20Image%202025-01-26%20at%2019.25.21_312eb3dd.jpg" alt="Offer Image" class="img-fluid rounded shadow-sm">
+    </div>
+  </div>
+</section>
+
+
+<%--<section class="container my-5">
   <!-- Shop By Age Section -->
   <div class="container text-center my-5">
     <h1 class="fw-bold">Shop By <span style="color: #ff6363;">Age</span></h1>
@@ -572,146 +779,135 @@
 
 <section class="container my-5">
   <!-- Limited Period Offer Section -->
-  <div class="row">
+  <div class="row align-items-center">
     <!-- Content Section on the Left -->
-    <div class="col-md-6">
-      <div class="limited-offer">
-        <h1>Limited Period Offer</h1>
-        <p class="fs-5">Buy 2 and get 30% off</p>
-        <div class="timer">
-          <div class="time-box">
-            <span>00</span>
-            <div>Days</div>
-          </div>
-          <div class="time-box">
-            <span>00</span>
-            <div>Hours</div>
-          </div>
-          <div class="time-box">
-            <span>00</span>
-            <div>Minutes</div>
-          </div>
-          <div class="time-box">
-            <span>00</span>
-            <div>Seconds</div>
-          </div>
+    <div class="col-md-6 text-center text-md-start">
+      <h1 class="fw-bold">Limited Period Offer</h1>
+      <p class="fs-5">Buy 2 and get <span class="text-danger fw-bold">30% off</span></p>
+      <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-4">
+        <div class="time-box">
+          <span class="fs-3 fw-bold text-primary">28</span>
+          <div>Days</div>
         </div>
-        <a href="#" class="shop-now-btn">Shop Now</a>
+        <div class="time-box">
+          <span class="fs-3 fw-bold text-primary">15</span>
+          <div>Hours</div>
+        </div>
+        <div class="time-box">
+          <span class="fs-3 fw-bold text-primary">38</span>
+          <div>Minutes</div>
+        </div>
+        <div class="time-box">
+          <span class="fs-3 fw-bold text-primary">22</span>
+          <div>Seconds</div>
+        </div>
       </div>
+      <a href="#" class="btn btn-primary mt-4 px-4 py-2">Shop Now</a>
     </div>
 
     <!-- Image Section on the Right -->
-    <div class="col-md-6 d-flex justify-content-center align-items-center">
-      <img src="images/Screenshot_2025-01-18_103333-removebg-preview.png" alt="Offer Image" class="img-fluid">
+    <div class="col-md-6 text-center">
+      <img src="images/Screenshot_2025-01-18_103333-removebg-preview.png" alt="Offer Image" class="img-fluid rounded shadow-sm">
     </div>
   </div>
+</section>--%>
 
-
-<%--
-  <div class="container my-5">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="d-flex align-items-center p-5" style="background-color: #d4edda; border-radius: 8px;">
-          <div class="text-left">
-            <h3>Star War Toys</h3>
-            <p>Libera dom condimentum mauris vel malesuada lorem nulla nec enim.</p>
-            <button class="btn btn-danger">Shop Now</button>
-          </div>
-          <div class="ml-auto">
-            <img src="images/Screenshot_2025-01-18_103504-removebg-preview.png" alt="Star War Toy" class="img-fluid" style="max-height: 200px;">
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="d-flex align-items-center p-5" style="background-color: #562256; border-radius: 8px;">
-          <div class="ml-auto">
-            <img src="images/Screenshot_2025-01-18_103504-removebg-preview%20(1).png" alt="Space Toy" class="img-fluid mb-3" style="max-height: 200px;">
-          </div>
-          <div class="text-left">
-            <h3>Star War Toys</h3>
-            <p>Libera dom condimentum mauris vel malesuada lorem nulla nec enim.</p>
-            <button class="btn btn-danger">Shop Now</button>
-          </div>
-
-        </div>
-
-        <!--<div class="d-flex1 bg-success text-light p-5">
-            &lt;!&ndash; Image on the left &ndash;&gt;
-            <div class="mr-3">
-                <img src="images/Screenshot_2025-01-18_103504-removebg-preview%20(1).png" alt="Space Toy" class="img-fluid mb-3" style="max-height: 200px;">
-            </div>
-            &lt;!&ndash; Text on the right &ndash;&gt;
-            <div class="d-flex flex-column justify-content-center">
-                <h3>Space Toys</h3>
-                <p>Libera dom condimentum mauris vel malesuada lorem nulla nec enim.</p>
-                <button class="btn btn-danger">Shop Now</button>
-            </div>
-        </div>-->
-      </div>
-    </div>
-  </div>
---%>
-
-  <section id="footer">
-  <footer id style="background-color: #ADD8E6; color: white; padding: 2rem 0;">
+<section id="footer">
+  <footer class="custom-footer text-white py-5">
     <div class="container">
       <div class="row">
         <!-- Welcome Section -->
-        <div class="col-md-3">
-          <h5>Welcome</h5>
-          <p>Porttitor pharetra ullamcorper. Praesent varius erat vitae nibh laoreet cursus. Donec suscipit gravida viverra.</p>
-          <p>Phasellus id nibh arcu a varius enim tempus a.</p>
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold">Welcome</h5>
+          <p class="small">Porttitor pharetra ullamcorper. Praesent varius erat vitae nibh laoreet cursus. Donec suscipit gravida viverra.</p>
         </div>
 
         <!-- More About Store -->
-        <div class="col-md-3">
-          <h5>More About Store</h5>
-          <ul class="list-unstyled">
-            <li>Multiple Branches</li>
-            <li>Take Franchise</li>
-            <li>Scheduled Offers</li>
-            <li>FAQ</li>
-            <li>More Links</li>
-            <li>Terms</li>
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold">More About Store</h5>
+          <ul class="list-unstyled small">
+            <li><a href="#" class="text-white text-decoration-none">Multiple Branches</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Take Franchise</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Scheduled Offers</a></li>
+            <li><a href="#" class="text-white text-decoration-none">FAQ</a></li>
           </ul>
         </div>
 
         <!-- Key Links -->
-        <div class="col-md-3">
-          <h5>Key Links</h5>
-          <ul class="list-unstyled">
-            <li>Order</li>
-            <li>Download</li>
-            <li>Address</li>
-            <li>Logout</li>
-            <li>Lost Password</li>
-            <li>Register</li>
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold">Key Links</h5>
+          <ul class="list-unstyled small">
+            <li><a href="#" class="text-white text-decoration-none">Order</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Download</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Logout</a></li>
           </ul>
         </div>
 
         <!-- Contact Details -->
-        <div class="col-md-3">
-          <h5>Contact Details</h5>
-          <p>Wheeling, West Virginia, 26003</p>
-          <p>Contact: 304-559-3023</p>
-          <p>Email: shopnow@store.com</p>
-          <p>Email: contact@ama.com</p>
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold">Contact Details</h5>
+          <p class="small">Wheeling, West Virginia, 26003</p>
+          <p class="small">Contact: 304-559-3023</p>
+          <p class="small">Email: <a href="mailto:shopnow@store.com" class="text-white text-decoration-none">shopnow@store.com</a></p>
         </div>
       </div>
 
+      <!-- Divider -->
+      <hr class="bg-white opacity-50">
+
       <!-- Copyright Section -->
-      <div class="row mt-4">
+      <div class="row mt-3">
         <div class="col text-center">
-          <p class="mb-0">&copy; Copyright | Th Shop Mania | Developed by ThemeHunk</p>
+          <p class="small mb-0">&copy; 2025 | <strong>Th Shop Mania</strong> | Developed by <a href="#" class="text-white text-decoration-none fw-bold">ThemeHunk</a></p>
         </div>
       </div>
     </div>
   </footer>
-  </section>
-
 </section>
 </body>
 
+<script>
+  function addCart(button) {
+    var form = $(button).closest('form');
+    var productId = form.find('input[name="productId"]').val();
+    var quantity = form.find('input[name="quantity"]').val();
+
+    console.log("Adding to cart:", productId, quantity);
+
+    $.ajax({
+      url: 'http://localhost:8080/Assignment_01_JSP_war_exploded/getAllProductCustomerView/cartSave',
+      method: 'POST',
+      data: {
+        productId: productId,
+        quantity: quantity,
+        userId : '<%= userId %>'
+      },
+      success: function(response) {
+        console.log('Success:', response);
+        alert('Product added to cart successfully!');
+        $(form).closest('.modal').modal('hide');
+      },
+      error: function(xhr, status, error) {
+        console.log('Error:', xhr.responseText);
+        alert('Error adding product to cart: ' + error);
+      }
+    });
+  }
+
+  function submitForm(button) {
+    var form = button.parentElement.querySelector('.productForm');
+    form.submit();
+  }
+  function isloggin() {
+    var loginLink = <%=isLoggedIn%>
+    if (loginLink) {
+      console.log("add to cart");
+    }else {
+      console.log('logging first')
+
+    }
+  }
+</script>
 
 
 

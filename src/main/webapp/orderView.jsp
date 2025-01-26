@@ -8,7 +8,7 @@
 
 <%@ page import="java.util.List" %>
 <%@ page import="lk.ijse.assignment_01_jsp.entity.Orders" %>
-<%@ page import="lk.ijse.assignment_01_jsp.entity.Orders" %>
+<%@ page import="lk.ijse.assignment_01_jsp.entity.OrderDetail" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,69 +33,129 @@
     </style>
 </head>
 <body>
-<header class="bg-light py-3 border-bottom">
-    <div class="container d-flex justify-content-between align-items-center">
-        <img src="images/toys-mania-42.png" alt="Toys Store Logo">
-        <nav>
-            <ul class="nav">
-                <li class="nav-item"><a class="nav-link text-dark" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="#">Orders</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="#">Products</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="#">Category</a></li>
+
+<!-- Header / Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="images/mainnew.png" height="40" width="40"/> Waggy Pet Shop
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin_dashboard.jsp">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="adduser">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="addcategory">Category</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="getProductList">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="orderView.jsp">Order</a>
+                </li>
             </ul>
-        </nav>
-        <a href="admin_dashboard.jsp" class="text-dark"><i class="bi bi-box-arrow-right"></i></a>
+            <div class="d-flex align-items-center">
+                <!-- Logout Icon -->
+                <a href="#" id="logoutLink" class="nav-link"><i class="bi bi-box-arrow-right"></i></a>
+            </div>
+        </div>
     </div>
-</header>
+</nav>
 
-<main class="container mt-5">
-    <h2 class="text-center mb-4">Order View</h2>
+<!-- Hero Section -->
+<section class="hero-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6" id="text">
+                <br>
+                <br>
+                <h1>order <span>view!</span></h1>
+                <h2>view All <span>orders here</span></h2>
 
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <thead class="table-primary">
-            <tr>
-                <th>ID</th>
-                <th>Customer ID</th>
-                <th>Product ID</th>
-                <th>Qty</th>
-                <th>Price</th>
-            </tr>
-            </thead>
-            <tbody>
-            <%
-                List<Orders> orders = (List<Orders>) request.getAttribute("orders");
-                if (orders != null && !orders.isEmpty()) {
-                    for (Orders order : orders) {
-            %>
-            <tr>
-               <%-- <td><%= orders.get %></td>
-                <td><%= orders.getCustomerId() %></td>
-                <td><%= orders.getProductId() %></td>
-                <td><%= orders.getQuantity() %></td>
-                <td><%= orders.getPrice() %></td>--%>
-            </tr>
-            <%
-                }
-            } else {
-            %>
-            <tr>
-                <td colspan="5" class="text-center">No orders found</td>
-            </tr>
-            <% } %>
-            </tbody>
-        </table>
+            </div>
+        </div>
     </div>
-</main>
+</section>
 
-<footer class="py-4 bg-dark text-white">
-    <div class="container text-center">
-        &copy; 2025 Toys Store. All Rights Reserved.
+<br><br>
+<section class="product-management-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- Items Table -->
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer Name</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <%
+                        List<OrderDetail> orders = (List<OrderDetail>) request.getAttribute("odList");
+                        if (orders != null && !orders.isEmpty()) {
+                            for (OrderDetail order : orders) {
+
+                    %>
+
+                    <tbody>
+                    <tr>
+                        <td><%= order.getId() %></td>
+                        <td><%= order.getOrder().getUser().getUserName() %></td>
+                        <td><%= order.getProduct().getName() %></td>
+                        <td><%= order.getPrice() %></td>
+                        <td><%= order.getQuantity() %></td>
+                        <td><%= order.getOrder().getTotal() %></td>
+
+                    </tr>
+                    <!-- More items can be dynamically added here -->
+                    </tbody>
+                    <%
+                            }
+                        }
+                    %>
+                </table>
+            </div>
+        </div>
     </div>
-</footer>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    // Add any required JavaScript for dynamic modal functionality or future enhancements
+    document.getElementById("logoutLink").addEventListener("click", function(event) {
+        // Prevent the default link behavior
+        event.preventDefault();
+
+        // Use SweetAlert2 for confirmation
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You will be logged out!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, log out!'
+        }).then((result) => {
+            // If the user confirms, redirect to index.jsp
+            if (result.isConfirmed) {
+                // Redirect after showing success message
+                window.location.href = "index.jsp";
+            }
+        });
+    });
 </script>
+
 </body>
 </html>

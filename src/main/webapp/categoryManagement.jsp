@@ -223,5 +223,29 @@
     });
 
 </script>
+<script>
+    document.getElementById("logoutLink").addEventListener("click", function(event) {
+        // Prevent the default link behavior
+        event.preventDefault();
+
+        // Use SweetAlert2 for confirmation
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You will be logged out!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, log out!'
+        }).then((result) => {
+            // If the user confirms, redirect to index.jsp
+            if (result.isConfirmed) {
+                // Redirect after showing success message
+                window.location.href = "index.jsp";
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

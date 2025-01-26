@@ -20,5 +20,8 @@
     <mapping class="lk.ijse.assignment_01_jsp.entity.User"/>
     <mapping class="lk.ijse.assignment_01_jsp.entity.Product"/>
     <mapping class="lk.ijse.assignment_01_jsp.entity.Category"/>
+    <mapping class="lk.ijse.assignment_01_jsp.entity.Cart"/>
+    <mapping class="lk.ijse.assignment_01_jsp.entity.Orders"/>
+    <mapping class="lk.ijse.assignment_01_jsp.entity.OrderDetail"/>
   </session-factory>
 </hibernate-configuration>

@@ -25,27 +25,37 @@
 </head>
 <body>
 <!-- Header Section -->
-<header class="bg-light py-3 position-fixed w-100" style="z-index: 1030;">
+<header class="bg-light py-3 border-bottom">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <img src="<%= request.getContextPath() %>/images/toys-mania-42.png" alt="Toys Store Logo">
+            <!-- Left Section -->
+            <div class="d-flex align-items-center">
+                <img src="images/toys-mania-42.png" alt="Toys Store Logo">
             </div>
-            <nav>
+
+            <!-- Right Section: Navigation -->
+            <nav class="d-flex flex-grow-1 justify-content-center align-items-center">
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/index.jsp">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/about.jsp">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">On Sale</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="getAllProductCustomerView">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="about.jsp">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#footer">Contact Us</a>
+                    </li>
                 </ul>
             </nav>
-            <div>
-                <a href="#" class="text-dark me-2"><i class="bi bi-search"></i></a>
-                <a href="#" class="text-dark me-2"><i class="bi bi-heart"></i></a>
-                <a href="<%= request.getContextPath() %>/registration.jsp" class="text-dark me-2"><i class="bi bi-person"></i></a>
-                <a href="#" class="text-dark me-2"><i class="bi bi-cart"></i></a>
-                <a href="#" class="text-dark"><i class="bi bi-box-arrow-right"></i></a>
+
+            <!-- Icons Section -->
+            <div class="d-flex">
+
+                <a href="#" class="text-dark me-3"><i class="bi bi-search"></i></a>
+                <a href="#" class="text-dark me-3"><i class="bi bi-heart"></i></a>
+                <a href="registration.jsp" class="text-dark me-3"><i class="bi bi-person"></i></a>
+                <a href="#" class="nav-link position-relative" onclick="ifnavigate()"></a>
+                <a href="getAllProductCustomerView" class="text-dark"><i class="bi bi-box-arrow-right"></i></a>
             </div>
         </div>
     </div>
@@ -62,7 +72,7 @@
                 <button class="btn btn-danger">Know More</button>
             </div>
             <div class="col-md-6">
-                <img src="<%= request.getContextPath() %>/images/sample-toy.png" alt="Toy Image" class="img-fluid">
+                <img src="<%= request.getContextPath() %>/images/about.jpg" alt="Toy Image" class="img-fluid">
             </div>
         </div>
     </section>
