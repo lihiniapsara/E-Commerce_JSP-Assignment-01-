@@ -115,7 +115,10 @@
         color: #ffffff; !* White text on hover *!
         transform: scale(1.1); !* Slight zoom-in effect *!
     }*/
+ body {
+   background: linear-gradient(135deg, #5b554e, #afafad); /* Soft yellow to light orange gradient */
 
+ }
 
     .time-box {
       display: inline-flex;
@@ -215,6 +218,8 @@
       padding: 30px ; /* Remove padding */
       border-radius: 10px; /* Optional: rounded corners */
     }
+
+
 
     #limited-offer .row {
       margin: 0; /* Remove row margin */
@@ -377,10 +382,8 @@
     </div>
   </div>
 </section>
-<a href="admin_dashboard.jsp">Admin Dashboard</a>
-
 <!-- Product Section -->
-<section class="container my-5">
+<section id="product" class="container my-5">
   <div class="text-center mb-4">
     <button class="btn btn-outline-primary mx-2">Best Seller</button>
     <button class="btn btn-outline-secondary mx-2">New Arrivals</button>
