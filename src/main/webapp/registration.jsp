@@ -35,15 +35,15 @@
             <!-- Login Tab -->
             <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
                 <h5 class="mb-3">Login</h5>
-                <form id="loginForm">
+                <form id="loginForm" action="login" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="email" placeholder="Enter email">
+                        <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="password" placeholder="Enter password">
+                            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
                             <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('password', this)">
                                 <i class="bi bi-eye"></i>
                             </button>
@@ -60,25 +60,42 @@
                 </form>
             </div>
 
+            <%
+                String message =  request.getParameter("loginError");
+                if (message != null) {
+                    System.out.println(message);
+            %>
+
+            <script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Login Failed!",
+                });
+            </script>
+            <%
+                }
+            %>
+
             <!-- Sign Up Tab -->
             <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
                 <h5 class="mb-3">Sign Up</h5>
-                <form id="signupForm">
+                <form id="signupForm" action="registration" method="post">
                     <div class="mb-3">
-                        <label for="fullname" class="form-label">Fullname</label>
-                        <input type="text" class="form-control" id="fullname" placeholder="Enter fullname">
+                        <label for="fullname" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="fullname" name="name" placeholder="Enter fullname">
                     </div>
                     <div class="mb-3">
                         <label for="signup-email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="signup-email" placeholder="Enter email">
+                        <input type="email" class="form-control" id="signup-email" name="email" placeholder="Enter email">
                     </div>
                     <div class="mb-3">
                         <label for="signup-password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="signup-password" placeholder="Enter password">
+                        <input type="password" class="form-control" id="signup-password" name="password" placeholder="Enter password">
                     </div>
                     <div class="mb-3">
                         <label for="confirm-password" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirm-password" placeholder="Enter password">
+                        <input type="password" class="form-control" id="confirm-password" name="confirm_password" placeholder="Enter password">
                     </div>
                     <button type="submit" class="btn btn-danger">Sign Up</button>
                 </form>

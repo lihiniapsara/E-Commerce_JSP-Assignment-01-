@@ -207,6 +207,43 @@
   </style>
 </head>
 <body>
+<%
+  String userId = request.getParameter("userId");
+  System.out.println(userId + " :User ID");
+  boolean isLoggedIn = (userId != null);
+  if (userId != null) {
+    System.out.println("logged in");
+%>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var loginLink = document.getElementById("loginLink");
+    var profileLink = document.getElementById("profileLink");
+
+    if (loginLink && profileLink) {
+      loginLink.style.display = "none";
+      profileLink.style.display = "block";
+    }
+  });
+</script>
+
+<%
+} else {
+  System.out.println("not logged in");
+%>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var loginLink = document.getElementById("loginLink");
+    var profileLink = document.getElementById("profileLink");
+
+    if (loginLink && profileLink) {
+      loginLink.style.display = "block";
+      profileLink.style.display = "none";
+    }
+  });
+</script>
+<%
+  }
+%>
 
 <!-- Header Section -->
 <header class="bg-light py-3 border-bottom">
@@ -221,19 +258,13 @@
       <nav class="d-flex flex-grow-1 justify-content-center align-items-center">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link text-dark" href="#">Home</a>
+            <a class="nav-link text-dark" href="getAllProductCustomerView">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" href="#">About Us</a>
+            <a class="nav-link text-dark" href="about.jsp">About Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" href="#">On Sale</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" href="#">Shop</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" href="#">Contact Us</a>
+            <a class="nav-link text-dark" href="#footer">Contact Us</a>
           </li>
         </ul>
       </nav>
@@ -244,7 +275,7 @@
         <a href="#" class="text-dark me-3"><i class="bi bi-search"></i></a>
         <a href="#" class="text-dark me-3"><i class="bi bi-heart"></i></a>
         <a href="registration.jsp" class="text-dark me-3"><i class="bi bi-person"></i></a>
-        <a href="#" class="text-dark me-3"><i class="bi bi-cart"></i></a>
+        <a href="getCartData" class="text-dark me-3"><i class="bi bi-cart"></i></a>
         <a href="#" class="text-dark"><i class="bi bi-box-arrow-right"></i></a>
       </div>
     </div>
@@ -314,12 +345,77 @@
       </div>
     </div>
 
-    <%
+    <div class="modal fade" id="addToCartModal<%= product.getId() %>" tabindex="-1" aria-labelledby="addToCartModalLabel<%= product.getId() %>" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addToCartModalLabel<%= product.getId() %>">Add <%= product.getName() %> to Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <!-- Hidden field for product ID -->
+              <input type="hidden" name="productId" value="<%= product.getId() %>">
+
+              <!-- Quantity input -->
+              <div class="mb-3">
+                <label for="quantity<%= product.getId() %>" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity<%= product.getId() %>" name="quantity" value="1" min="1" required>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addCart(this)">Add to Cart</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <%
         }
       }
     %>
+    <script src="JQ/jquery-3.7.1.min.js"></script>
 
 
+    <script>
+      function addCart(button) {
+        // Get the modal form closest to the button clicked
+        var form = $(button).closest('form');
+
+        // Get product ID and quantity values from the form
+        var productId = form.find('input[name="productId"]').val();
+        var quantity = form.find('input[name="quantity"]').val();
+
+        // Send an AJAX POST request to the server
+        $.ajax({
+          url: '/addToCart', // Your server endpoint
+          type: 'POST',
+          data: {
+            productId: productId,
+            quantity: quantity
+          },
+          success: function(response) {
+            // Handle success (e.g., show a message or update cart UI)
+            alert('Product added to cart successfully!');
+            // Optionally, close the modal
+            $(form).closest('.modal').modal('hide');
+          },
+          error: function(xhr, status, error) {
+            // Handle error
+            alert('Error adding product to cart: ' + error);
+          }
+        });
+      }
+
+      function submitForm(button) {
+        // Trigger the hidden form for the specific product
+        $(button).siblings('.productForm').submit();
+      }
+    </script>
 
   <%--  <!-- Product Card 2 -->
     <div class="col">
@@ -511,6 +607,7 @@
   </div>
 
 
+<%--
   <div class="container my-5">
     <div class="row">
       <div class="col-md-6">
@@ -553,8 +650,10 @@
       </div>
     </div>
   </div>
+--%>
 
-  <footer style="background-color: #ADD8E6; color: white; padding: 2rem 0;">
+  <section id="footer">
+  <footer id style="background-color: #ADD8E6; color: white; padding: 2rem 0;">
     <div class="container">
       <div class="row">
         <!-- Welcome Section -->
@@ -608,6 +707,7 @@
       </div>
     </div>
   </footer>
+  </section>
 
 </section>
 </body>
@@ -619,6 +719,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+  <script src="JQ/jquery-3.7.1.min.js"></script>
+
 
 </html>
 
